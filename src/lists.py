@@ -1,33 +1,102 @@
-dogs = ["Buddy", "Max", "Bella", "Lu/ncy  ", "Daisy"]
-print("Max" in dogs)
-print(dogs[2:4])
-print(dogs[-2 ].strip())
-print(dogs[::-1])
-print(len(dogs))
-print(dogs.append("Molly"))
-print(dogs.extend(["Charlie", "Luna"]))
-print(dogs)
+"""
+Полный гайд по работе со СПИСКАМИ (List) в Python.
+Списки - это изменяемые (мutable) последовательности элементов.
 
+Основные операции:
+- Проверка наличия элемента (in)
+- Слайсинг (срезы)
+- Индексация
+- Методы списков (append, extend, pop, insert и т.д.)
+"""
+
+# ========== ОСНОВНЫЕ ОПЕРАЦИИ ==========
+
+dogs = ["Buddy", "Max", "Bella", "Lu/ncy  ", "Daisy"]
+
+# Проверка наличия элемента в списке (возвращает True или False)
+print("Max" in dogs)  # Output: True
+
+# Слайсинг (срезы) - получить подсписок
+# [start:end] - элементы с индекса start до end-1
+print(dogs[2:4])  # Output: ['Bella', 'Lu/ncy  ']
+
+# Отрицательный индекс (-2) обозначает второй элемент с конца
+# .strip() удаляет пробелы в начале и конце строки
+print(dogs[-2].strip())  # Output: Lu/ncy
+
+# [::-1] - обратный порядок элементов
+print(dogs[::-1])  # Output: ['Daisy', 'Lu/ncy  ', 'Bella', 'Max', 'Buddy']
+
+# len() - количество элементов в списке
+print(len(dogs))  # Output: 5
+
+# append() - добавляет один элемент в конец (модифицирует список, возвращает None)
+print(dogs.append("Molly"))  # Output: None
+
+# extend() - добавляет несколько элементов в конец (модифицирует список, возвращает None)
+print(dogs.extend(["Charlie", "Luna"]))  # Output: None
+
+print(dogs)  # Список изменился
+
+
+# ========== РАБОТА СО СТРОКАМИ В СПИСКЕ ==========
 
 items = ["Buddy", "Max", "Bella", "Lu\n\"cy  ", "Daisy"]
 string = "jhdfhfjhdfjk\nkjflkjdg"
-print(string)
+print(string)  # Многострочная строка
 
-print(items.count("Max"))
-print(items.index("Bella"))
-items.pop(2)
+
+# ========== ПОИСК И УДАЛЕНИЕ ==========
+
+# count() - подсчитывает количество элементов с значением
+print(items.count("Max"))  # Output: 1
+
+# index() - возвращает индекс первого найденного элемента
+print(items.index("Bella"))  # Output: 2
+
+# pop(индекс) - удаляет и возвращает элемент по индексу
+items.pop(2)  # Удаляет "Bella" на индексе 2
 print(items)
-print(items.__add__(["Rocky", "Zoe"]))
-print(items.insert(2, "Zoe"))
+
+
+# ========== ОПЕРАЦИИ С СПИСКАМИ ==========
+
+# __add__() - конкатенация (объединение) двух списков
+print(items.__add__(["Rocky", "Zoe"]))  # Возвращает новый список
+
+# insert(индекс, элемент) - вставляет элемент на заданную позицию
+print(items.insert(2, "Zoe"))  # Output: None (модифицирует список)
+
+# += для списков добавляет элементы в конец
 items += ["Rocky"]
-items += "Rocky"
 print(items)
-items[1:1] = ["Coco", "Lola"]
+
+# Внимание! += со строкой добавляет каждый символ отдельно!
+items += "Rocky"  # Это добавит 'R', 'o', 'c', 'k', 'y' как отдельные элементы
 print(items)
+
+
+# ========== СРЕЗЫ И ПРИСВАИВАНИЕ ==========
+
+# Присваивание через срез - вставляет элементы между элементами
+items[1:1] = ["Coco", "Lola"]  # Вставляет на позицию 1
+print(items)
+
+
+# ========== СОРТИРОВКА ==========
+
+# sort() - сортирует список на месте (модифицирует, возвращает None)
 items.sort()
 print(items)
-items.sort(key=str.upper, reverse=True )
+
+# sort(key=функция, reverse=True) - сортирует с функцией и в обратном порядке
+# str.upper - преобразует в верхний регистр для сравнения
+items.sort(key=str.upper, reverse=True)  # Сортирует по верхнему регистру в обратном порядке
 print(items)
 
+
+# ========== SORTED() - СОЗДАЕТ НОВЫЙ СПИСОК ==========
+
+# sorted() - возвращает НОВЫЙ отсортированный список, не изменяя исходный
 print(sorted(items, key=str.upper))
-print(items)
+print(items)  # Исходный список остался неизменным

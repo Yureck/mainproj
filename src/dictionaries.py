@@ -1,25 +1,105 @@
+"""
+Полный гайд по работе со СЛОВАРЯМИ (Dict) в Python.
+Словари - это изменяемые (mutable) структуры данных, которые хранят пары ключ-значение.
+
+Основные операции:
+- Создание и добавление элементов
+- Получение значений
+- Удаление элементов
+- Итерация по ключам, значениям и парам
+- Методы словарей (get, pop, update, setdefault и т.д.)
+"""
+
+# ========== СОЗДАНИЕ СЛОВАРЯ И БАЗОВЫЕ ОПЕРАЦИИ ==========
+
+# Создание словаря со значениями
 dog = { "name": "Rover", "age": 5, "breed": "Labrador" }
+
+# Добавление нового элемента
 dog["color"] = "brown"
+print(dog)  # Output: {'name': 'Rover', 'age': 5, 'breed': 'Labrador', 'color': 'brown'}
+
+# Получение значения по ключу (вызывает KeyError если ключ не существует)
+print(dog["name"])  # Output: Rover
+
+# get(ключ, значение_по_умолчанию) - безопасное получение значения
+print(dog.get("age", "Age not found"))  # Output: 5
+
+# pop(ключ) - удаляет элемент и возвращает его значение
+print(dog.pop("breed"))  # Output: Labrador
+print(dog)  # 'breed' больше нет в словаре
+
+
+# ========== ПРОСМОТР КЛЮЧЕЙ, ЗНАЧЕНИЙ И ПАР ==========
+
+# keys() - возвращает все ключи
+print(dog.keys())  # Output: dict_keys(['name', 'age', 'color'])
+
+# values() - возвращает все значения
+print(dog.values())  # Output: dict_values(['Rover', 5, 'brown'])
+
+# items() - возвращает все пары (ключ-значение)
+print(dog.items())  # Output: dict_items([('name', 'Rover'), ('age', 5), ('color', 'brown')])
+
+# Проверка наличия ключа (in проверяет только ключи, не значения!)
+print("age" in dog)  # Output: True
+
+# len() - количество элементов (пар ключ-значение)
+print(len(dog))  # Output: 3
+
+
+# ========== ОБНОВЛЕНИЕ СЛОВАРЯ ==========
+
+# update() - обновляет словарь значениями из другого словаря
+dog.update({"age": 6, "color": "black"})  # Изменяет существующие ключи
 print(dog)
-print(dog["name"])
-print(dog.get("age", "Age not found"))
-print(dog.pop("breed"))
-print(dog)
-print(dog.keys())
-print(dog.values())
-print(dog.items()) # key-value pairs
-print("age" in dog)
-print(len(dog)) 
-dog.update({"age": 6, "color": "black"})
-print(dog)
+
+
+# ========== СОЗДАНИЕ СЛОВАРЯ ДРУГИМИ СПОСОБАМИ ==========
+
+# Использование конструктора dict()
 new_dog = dict(name="Max", age=3, breed="Beagle")
 print(new_dog)
+
+
+# ========== ИТЕРАЦИЯ ПО СЛОВАРЮ ==========
+
+# for в словаре по умолчанию итерирует по ключам
 for key, value in dog.items():
-    print(f"{key}: {value}")    
-print(dog.setdefault("vaccinated", True))
-print(dog)  
-print(list(dog))
-dog["favorite_toys"] = ["ball", "frisbee"]  
+    print(f"{key}: {value}")
+# Output:
+# name: Rover
+# age: 6
+# color: black
+
+
+# ========== SETDEFAULT() ==========
+
+# setdefault(ключ, значение) - если ключа нет, добавляет его с значением
+# Возвращает значение (старое или новое)
+print(dog.setdefault("vaccinated", True))  # Output: True
+print(dog)  # Добавилась пара 'vaccinated': True
+
+
+# ========== ПРЕОБРАЗОВАНИЕ В СПИСОК ==========
+
+# list(словарь) - преобразует ключи словаря в список
+print(list(dog))  # Output: ['name', 'age', 'color', 'vaccinated']
+
+
+# ========== ВЛОЖЕННЫЕ СТРУКТУРЫ ==========
+
+# Можно хранить списки как значения
+dog["favorite_toys"] = ["ball", "frisbee"]
 print(dog)
+
+
+# ========== КОПИРОВАНИЕ СЛОВАРЯ ==========
+
+# copy() - создает поверхностную копию
+# Важно: это не глубокая копия! Вложенные списки/словари все еще указывают на один объект
 dogCopy = dog.copy()
-print(dogCopy)  
+print(dogCopy)  # Выглядит так же как dog
+
+# Если изменить исходный словарь, копия остается неизменной (для простых типов)
+# Но если у словаря есть вложенные структуры, они будут изменены везде!  
