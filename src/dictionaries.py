@@ -1,0 +1,25 @@
+dog = { "name": "Rover", "age": 5, "breed": "Labrador" }
+dog["color"] = "brown"
+print(dog)
+print(dog["name"])
+print(dog.get("age", "Age not found"))
+print(dog.pop("breed"))
+print(dog)
+print(dog.keys())
+print(dog.values())
+print(dog.items())
+print("age" in dog)
+print(len(dog)) 
+dog.update({"age": 6, "color": "black"})
+print(dog)
+new_dog = dict(name="Max", age=3, breed="Beagle")
+print(new_dog)
+for key, value in dog.items():
+    print(f"{key}: {value}")    
+print(dog.setdefault("vaccinated", True))
+print(dog)  
+print(list(dog))
+dog["favorite_toys"] = ["ball", "frisbee"]  
+print(dog)
+dogCopy = dog.copy()
+print(dogCopy)  
