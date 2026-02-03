@@ -7,7 +7,7 @@ print(dog.pop("breed"))
 print(dog)
 print(dog.keys())
 print(dog.values())
-print(dog.items())
+print(dog.items()) # key-value pairs
 print("age" in dog)
 print(len(dog)) 
 dog.update({"age": 6, "color": "black"})
