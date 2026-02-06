@@ -75,21 +75,21 @@ from enum import Enum
 
 class State(Enum):
     """Перечисление состояний задачи."""
-    NEW = 1  # Новое
+    NEW ="new" # Новое
     IN_PROGRESS = 2  # В процессе
     COMPLETED = 3  # Завершено
 
 # Доступ к элементу enum
-print(State.NEW)  # Output: State.NEW
+print(State.IN_PROGRESS)  # Output: State.IN_PROGRESS
 
 # .name - имя элемента
-print(State.NEW.name)  # Output: NEW
+print(State.IN_PROGRESS.name)  # Output: NEW
 
 # .value - значение элемента
-print(State.NEW.value)  # Output: 1
+print(State.NEW.value)  # Output: new
 
 # Получение по значению
-print(State(1).value)  # Output: 1
+print(State("new").value)  # Output: new
 
 # Получение по имени
 print(State['NEW'].name)  # Output: NEW  
